@@ -2,7 +2,7 @@ from bottle import default_app, route, template, redirect
 import sqlite3
 
 connection = sqlite3.connect("shopping_list.db")
-#import database
+import database
 
 @route('/')
 def get_index():
