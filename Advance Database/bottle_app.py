@@ -1,6 +1,8 @@
-from bottle import default_app, route, get, post, template, request, redirect
+from bottle import default_app, route, template, redirect
+import sqlite3
 
-import database
+connection = sqlite3.connect("shopping_list.db")
+#import database
 
 @route('/')
 def get_index():
@@ -8,33 +10,15 @@ def get_index():
 
 @route('/list')
 def get_list():
-    items = database.get_items()
-    return template("shopping_list.tpl", name="Sundeep", shopping_list=items)
+    cursor = connection.cursor()
+    rows=cursor.execute("select id,description from list")
+    rows=list(rows)
+    rows=[{'id':row[0],'desc':row[1]} for row in rows]
 
-@post('/add')
-def post_add():
-    description = request.forms.get("description")
-    database.add_item(description)
-    redirect('/list')
+    return template("shopping_list.tpl", name="Sundeep", shopping_list=rows)
 
-@route("/delete/<id>")
-def get_delete(id):
-    database.delete_item(id)
-    redirect('/list')
 
-@get("/edit/<id>")
-def get_edit(id):
-    items = database.get_items(id)
-    if len(items) != 1:
-        redirect('/list')
-    item_id, description = items[0]['id'], items[0]['desc']
-    assert item_id == int(id)
-    return template("edit_item.tpl", id=id, description=description)
 
-@post("/edit/<id>")
-def post_edit(id):
-    description = request.forms.get("description")
-    database.update_item(id, description)
-    redirect('/list')
+
 
 application = default_app()
