@@ -20,3 +20,26 @@ git push
 .exit
 exit
 python3 bottle_app.py
+ls
+mkdir topic-3-dataset
+cp -rm *.py *.db views topic-3-dataset
+cp --help
+cp --r *.py *.db views topic-3-dataset
+cp -r *.py *.db views topic-3-dataset
+cd topic-3-dataset
+ls
+cd..
+cd ..
+cp -r shopping_list.db-shm shopping_list.db-wal topic-3-dataset
+ls
+cd topic-3-dataset
+ls
+git status
+git add --all
+git commit -m "Dataset COmpleted"
+git push
+git pull
+git status
+git add --all
+git commit -m "dataset abstraction"
+git push
