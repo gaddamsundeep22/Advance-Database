@@ -1,5 +1,6 @@
 import sqlite3
 
+# DB-API spec for talking to relational databases in Python
 
 connection = sqlite3.connect("shopping_list.db")
 

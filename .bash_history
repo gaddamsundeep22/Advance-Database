@@ -19,3 +19,4 @@ python3 query.py
 git push
 .exit
 exit
+python3 bottle_app.py

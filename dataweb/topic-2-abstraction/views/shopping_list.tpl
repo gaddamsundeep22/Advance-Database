@@ -1,6 +1,6 @@
 <html>
 <body>
-<h2>Shopping List</h2>
+<h2>Room mates List</h2>
 <hr/>
 <table>
 % for item in shopping_list:
